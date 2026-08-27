@@ -1,4 +1,4 @@
-# auth: Anbo Jia
+###
 
 
 a = {'shubao':True,'shu':True,'bijiben':True}

@@ -115,7 +115,6 @@ HOSTS = [
 ]
 
 
-
 def log(msg: str) -> None:
     """
     日志输出与写入函数
@@ -123,13 +122,16 @@ def log(msg: str) -> None:
     time_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     day_now = datetime.now().strftime('%Y-%m-%d')
     body = f"{time_now} | {msg}\n"
-    with open(f"host_check_{day_now}.log",'a',encoding='utf-8') as f:
+    with open(f"host_check_{day_now}.log", 'a', encoding='utf-8') as f:
         f.write(body)
-    print(body,end='')
 
-def check_host_one(host_one: dict):
+
+print(body,end='')
+
+def check_host_one(host_one: dict) -> dict:
     """
     单个Host检查函数
+    :return: dict
     """
     host_one_result = {
         "host": host_one['host'],
@@ -174,6 +176,11 @@ def check_host_one(host_one: dict):
 
 
 def run_parallel(hosts: list) -> list:
+    """
+    并发主程序，调用check_host_one()函数
+    :param hosts: list
+    :return: list
+    """
     results = []
     with ThreadPoolExecutor(max_workers=MAX_PARALLEL) as pool:
         work_list = {pool.submit(check_host_one, host): host for host in hosts}
@@ -194,6 +201,11 @@ def run_parallel(hosts: list) -> list:
     return results
 
 def print_result(results: list) -> tuple:
+    """
+    输出报告
+    :param results: list
+    :return: tuple
+    """
     success_count = 0
     fail_count = 0
 
@@ -214,10 +226,6 @@ def print_result(results: list) -> tuple:
     print('-' * 50)
 
     return success_count, fail_count
-
-
-
-
 
 
 def main():

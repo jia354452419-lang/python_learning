@@ -6,17 +6,18 @@
 5. sorted 排序
 6. print(f"{status} | {r['name']:<15} | {r['host']:<25} | {r['detail']:<35}")  设置输出格式
 7. dict.get()可以设置默认值, dict.get('name',''),   而dict['name']只能取值，当key不存在时会报错
+8. 正常的logging.StreamHandler的输出是走stderr（标准错误），而程序输出打印结果是stdout，所以会出现日志与最后的结果打印顺序不对，可以指定Handle的输出为stdout解决这个问题
 """
 
-
-
-
+import logging
 import re
-import threading
 import subprocess
 import sys
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+from logging.handlers import TimedRotatingFileHandler
+
 
 # ping 设置
 PING_TIMEOUT = 5000
@@ -25,6 +26,8 @@ PING_COUNT = 2
 # 线程数
 MAX_PARALLEL = 10
 
+
+"""
 # host主机列表
 HOSTS = [
     {'host': 'www.baidu.com', 'name': 'ok-01'},
@@ -132,22 +135,56 @@ HOSTS = [
 #     {'host': 'www.baidu.com', 'name': 'ok-01'},
 #     {'host': 'www.qq.com', 'name': 'ok-02'}
 # ]
+"""
 
 
-log_lock = threading.Lock()
 
-def log(msg: str) -> None:
-    """
-    日志输出与写入函数
-    """
-    date_time = datetime.now()
-    time_now = date_time.strftime('%Y-%m-%d %H:%M:%S')
-    day_now = date_time.strftime('%Y-%m-%d')
-    body = f"{time_now} | {msg}\n"
-    with log_lock:
-        with open(f"host_check_{day_now}.log", 'a', encoding='utf-8') as f:
-            f.write(body)
-        print(body,end='')
+# 获取配置文件
+HOSTS = []
+with open(Path(__file__).parent / 'hosts.txt','r',encoding='utf-8') as hosts:
+    for line in hosts:
+        line = line.strip()
+        if not line:
+            continue
+        ip, name = line.split(',')
+        HOSTS.append({'host': ip, 'name': name})
+
+
+
+
+# log_lock = threading.Lock()
+#
+# def log(msg: str) -> None:
+#     """
+#     日志输出与写入函数
+#     """
+#     date_time = datetime.now()
+#     time_now = date_time.strftime('%Y-%m-%d %H:%M:%S')
+#     day_now = date_time.strftime('%Y-%m-%d')
+#     body = f"{time_now} | {msg}\n"
+#     with log_lock:
+#         with open(f"host_check_{day_now}.log", 'a', encoding='utf-8') as f:
+#             f.write(body)
+#         print(body,end='')
+
+# 日志
+log = logging.getLogger('host_check')
+def log_setup() -> None:
+
+    log.setLevel(logging.DEBUG)
+
+    screen_log = logging.StreamHandler(sys.stdout)
+    screen_log.setLevel(logging.INFO)
+    screen_log.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)-10s - %(message)s'))
+
+    refresh_file_log = TimedRotatingFileHandler(Path(__file__).parent / 'host_check.log', when='midnight',backupCount=2, encoding='utf-8')
+    refresh_file_log.setLevel(logging.DEBUG)
+    refresh_file_log.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)-10s - %(message)s'))
+
+    log.addHandler(screen_log)
+    log.addHandler(refresh_file_log)
+
+
 
 def check_host_one(host_one: dict) -> dict:
     """
@@ -168,13 +205,13 @@ def check_host_one(host_one: dict) -> dict:
         cmd_result = subprocess.run(cmd, capture_output=True, text=True,timeout=15)
     # 超时返回
     except subprocess.TimeoutExpired:
-        log(f"error | name: {host_one['name']}, ip: {host_one['host']}, error info: ping命令超时")
+        log.error(f"name: {host_one['name']:<10}, ip: {host_one['host']:<15}, error info: ping命令超时")
         host_one_result['detail'] = 'ping命令超时'
         return host_one_result
 
     # 失败返回
     if cmd_result.returncode != 0:
-        log(f"error | name: {host_one['name']}, ip: {host_one['host']}, error info: ping失败")
+        log.error(f"name: {host_one['name']:<10}, ip: {host_one['host']:<15}, error info: ping失败")
         host_one_result['detail'] = 'ping失败'
         return host_one_result
 
@@ -193,19 +230,19 @@ def check_host_one(host_one: dict) -> dict:
     if loss is None:
         host_one_result['result'] = 'WARN'
         host_one_result['detail'] = f"loss解析失败, avg: {avg}ms"
-        log(f"error | name: {host_one['name']}, ip: {host_one['host']}, 'loss解析失败', avg: {avg}ms")
+        log.error(f"name: {host_one['name']:<10}, ip: {host_one['host']:<15}, 'loss解析失败', avg: {avg}ms")
         return host_one_result
 
     if loss >= 50:
         host_one_result['result'] = 'WARN'
         host_one_result['detail'] = f"high loss, loss: {loss}%, avg: {avg}ms"
-        log(f"warn | name: {host_one['name']}, ip: {host_one['host']}, loss: {loss}%, avg: {avg}ms")
+        log.warning(f"name: {host_one['name']:<10}, ip: {host_one['host']:<15}, loss: {loss}%, avg: {avg}ms")
         return host_one_result
     # 成功返回
     host_one_result['result'] = 'SUCCESS'
     host_one_result['detail'] = f"loss: {loss}%, avg: {avg}ms"
 
-    log(f"info | name: {host_one['name']}, ip: {host_one['host']}, loss: {loss}%, avg: {avg}ms")
+    log.info(f"name: {host_one['name']:<10}, ip: {host_one['host']:<15}, loss: {loss}%, avg: {avg}ms")
     return host_one_result
 
 
@@ -223,7 +260,7 @@ def run_parallel(hosts: list) -> list:
             try:
                 result = future.result()
             except Exception as e:
-                log(f"error | ip: {future_host}, error info: {e}")
+                log.error(f"ip: {future_host}, error info: {e}")
                 result = {
                     "host": future_host['host'],
                     "name": future_host['name'],
@@ -276,6 +313,7 @@ def main():
     1 运行多线程程序
     2 输出结果
     """
+    log_setup()
     success, warn, failure = print_result(run_parallel(HOSTS))
     return 0 if failure == 0 else 1
 

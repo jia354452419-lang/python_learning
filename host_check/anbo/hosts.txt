@@ -1,0 +1,8 @@
+www.baidu.com,ok-01
+www.qq.com,ok-02
+192.0.2.1,bad-01
+www.taobao.com,ok-03
+www.jd.com,ok-04
+www.aliyun.com,ok-05
+www.163.com,ok-06
+192.0.2.2,bad-02

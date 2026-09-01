@@ -1,0 +1,6 @@
+2026-08-31 18:18:07,103 - __main__   - INFO       - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use%:30%
+2026-08-31 18:18:07,126 - __main__   - INFO       - root@192.168.102.20 获取成功 Size:44G, used:8.4G, avail:34G, use%:20%
+2026-08-31 18:18:54,085 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use%:30%
+2026-08-31 18:18:54,453 - __main__   - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.4G, avail:34G, use%:20%
+2026-08-31 18:19:23,659 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use%:30%
+2026-08-31 18:19:23,671 - __main__   - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.4G, avail:34G, use%:20%

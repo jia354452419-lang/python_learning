@@ -148,7 +148,7 @@ def print_report(last_list: list) -> tuple:
         print(f"{result['status']} | {result['username']}@{result['ip']:<18} | size: {result['result'].get('size','error'):<10} | used: {result['result'].get('used','error'):<10} | avail: {result['result'].get('avail','error'):<10} | use_percent: {result['result'].get('use_percent','error'):<10} ")
 
     print('-'*50)
-    print(f"成功 {success}，失败 {failure}，共 {success + failure} 台")
+    print(f"成功 {success}，警告： {warning}, 失败 {failure}，共 {success + warning + failure} 台")
     return success, warning, failure
 
 

@@ -2,13 +2,16 @@ import sys
 import logging
 import subprocess
 from pathlib import Path
+from datetime import datetime
 from logging.handlers import TimedRotatingFileHandler
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
 
 
 HOSTS = [
     {'ip':'192.168.102.20','port':22,'username':'root','password':'root'},
     {'ip':'192.168.102.22','port':22,'username':'root','password':'root'},
+    {'ip':'192.168.102.23','port':22,'username':'root','password':'root'},
 ]
 
 
@@ -35,15 +38,14 @@ def setup_log() -> None:
 
 
 
-def get_info(msg: str):
-    for line in msg.splitlines():
-        if '/' in line:
-            size = line.strip().split()[1]
-            used = line.strip().split()[2]
-            avail = line.strip().split()[3]
-            use_p = line.strip().split()[4]
-            return size, used, avail, use_p
-    return None
+def get_info(msg: str) -> tuple:
+    lines = msg.splitlines()
+    if len(lines) < 2:
+        return None
+    part = lines[1].strip().split()
+    if len(part) < 5:
+        return None
+    return part[1], part[2], part[3], part[4]
 
 def run_cmd_one(host: dict) -> dict:
     cmd = ["ssh", "-o", "BatchMode=yes",
@@ -72,27 +74,34 @@ def run_cmd_one(host: dict) -> dict:
     try:
         result = subprocess.run(cmd,capture_output=True,text=True,timeout=8)
     except subprocess.TimeoutExpired:
-        cmd_result["detail"] = "连接超时，无法连接到目标主机"
-        log.error(f"{ssh_info} 连接超时")
+        cmd_result["detail"] = f"连接超时（8秒内 ssh 未完成连接+执行）"
+        log.error(f"{ssh_info} 连接超时（8秒内 ssh 未完成连接+执行）")
         return cmd_result
 
     if result.returncode == 255:
-        cmd_result["detail"] = "命令输入有误"
-        log.error(f"{ssh_info} 命令输入有误")
+        cmd_result["detail"] = f"{result.stderr.strip()[:100]}"
+        log.error(f"{ssh_info}, {result.stderr.strip()[:100]}")
         return cmd_result
     elif result.returncode != 0:
-        cmd_result["detail"] = "命令执行失败"
-        log.error(f"{ssh_info} 命令执行失败")
+        cmd_result["detail"] = f"{result.stderr.strip()[:100]}"
+        log.error(f"{ssh_info} {result.stderr.strip()[:100]}")
         return cmd_result
 
-    size, used, avail, use_p = get_info(result.stdout)
+    info = get_info(result.stdout)
+    if info is None:
+        log.error(f"{ssh_info} 获取失败")
+        cmd_result["status"] = "FAILURE"
+        cmd_result["detail"] = "执行失败"
+        cmd_result["result"] = {'size': 'error', 'used': 'error', 'avail': 'error', 'use%': 'error'}
+        return cmd_result
+    size, used, avail, use_p = info
     log.info(f"{ssh_info} 获取成功 Size:{size}, used:{used}, avail:{avail}, use%:{use_p}")
     cmd_result["status"] = "SUCCESS"
     cmd_result["detail"] = "执行成功"
     cmd_result["result"] = {'size':size, 'used':used, 'avail':avail, 'use%':use_p}
     return cmd_result
 
-def run_cmd_paralell(hosts: list) -> dict:
+def run_cmd_parallel(hosts: list) -> list:
 
     last_list = []
 
@@ -103,7 +112,7 @@ def run_cmd_paralell(hosts: list) -> dict:
             try:
                 result = future.result()
             except Exception as e:
-                cmd_result = {
+                result = {
                     'ip': host_info['ip'],
                     'username': host_info['username'],
                     'status': 'FAILURE',
@@ -111,16 +120,27 @@ def run_cmd_paralell(hosts: list) -> dict:
                     'result': {}
                 }
                 log.error(f"{host_info['username']}@{host_info['ip']} 命令执行失败")
-                last_list.append(cmd_result)
             last_list.append(result)
     return last_list
 
 
 def print_report(last_list: list) -> tuple:
 
-    for result in last_list:
-        print(f"{result['status']} | {result['username']}@{result['ip']:<18} | size: {result['result']['size']:<10} | used: {result['result']['used']:<10} | avail: {result['result']['avail']:<10} | use%: {result['result']['use%']:<10} ")
+    success = 0
+    failure = 0
 
+    print('-'*50)
+    print('-'*20,datetime.now().strftime('%Y-%m-%d %H:%M:%S'),'-'*20)
+    print('-'*50)
+
+    for result in last_list:
+        if result['status'] == 'SUCCESS':
+            success += 1
+        elif result['status'] == 'FAILURE':
+            failure += 1
+        print(f"{result['status']} | {result['username']}@{result['ip']:<18} | size: {result['result'].get('size','error'):<10} | used: {result['result'].get('used','error'):<10} | avail: {result['result'].get('avail','error'):<10} | use%: {result['result'].get('use%','error'):<10} ")
+
+    return success, failure
 
 
 
@@ -132,10 +152,10 @@ def main():
     4 打印报告
     """
     setup_log()
-    a = run_cmd_paralell(HOSTS)
-    print_report(a)
+    res = run_cmd_parallel(HOSTS)
+    s,f = print_report(res)
 
-
+    return 0 if f == 0 else 1
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

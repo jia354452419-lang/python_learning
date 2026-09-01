@@ -92,13 +92,17 @@ def run_cmd_one(host: dict) -> dict:
         log.error(f"{ssh_info} 获取失败")
         cmd_result["status"] = "FAILURE"
         cmd_result["detail"] = "执行失败"
-        cmd_result["result"] = {'size': 'error', 'used': 'error', 'avail': 'error', 'use%': 'error'}
+        cmd_result["result"] = {'size': 'error', 'used': 'error', 'avail': 'error', 'use_percent': 'error'}
         return cmd_result
     size, used, avail, use_p = info
-    log.info(f"{ssh_info} 获取成功 Size:{size}, used:{used}, avail:{avail}, use%:{use_p}")
+    log.info(f"{ssh_info} 获取成功 Size:{size}, used:{used}, avail:{avail}, use_percent:{use_p}")
     cmd_result["status"] = "SUCCESS"
     cmd_result["detail"] = "执行成功"
-    cmd_result["result"] = {'size':size, 'used':used, 'avail':avail, 'use%':use_p}
+    cmd_result["result"] = {'size':size, 'used':used, 'avail':avail, 'use_percent':use_p}
+
+    if int(use_p.strip('%')) > 85:
+        cmd_result["status"] = "WARNING"
+        cmd_result["detail"] = "磁盘使用超过85%"
     return cmd_result
 
 def run_cmd_parallel(hosts: list) -> list:
@@ -127,6 +131,7 @@ def run_cmd_parallel(hosts: list) -> list:
 def print_report(last_list: list) -> tuple:
 
     success = 0
+    warning = 0
     failure = 0
 
     print('-'*50)
@@ -138,9 +143,13 @@ def print_report(last_list: list) -> tuple:
             success += 1
         elif result['status'] == 'FAILURE':
             failure += 1
-        print(f"{result['status']} | {result['username']}@{result['ip']:<18} | size: {result['result'].get('size','error'):<10} | used: {result['result'].get('used','error'):<10} | avail: {result['result'].get('avail','error'):<10} | use%: {result['result'].get('use%','error'):<10} ")
+        elif result['status'] == 'WARNING':
+            warning += 1
+        print(f"{result['status']} | {result['username']}@{result['ip']:<18} | size: {result['result'].get('size','error'):<10} | used: {result['result'].get('used','error'):<10} | avail: {result['result'].get('avail','error'):<10} | use_percent: {result['result'].get('use_percent','error'):<10} ")
 
-    return success, failure
+    print('-'*50)
+    print(f"成功 {success}，失败 {failure}，共 {success + failure} 台")
+    return success, warning, failure
 
 
 
@@ -153,9 +162,9 @@ def main():
     """
     setup_log()
     res = run_cmd_parallel(HOSTS)
-    s,f = print_report(res)
+    success, warning, failure = print_report(res)
 
-    return 0 if f == 0 else 1
+    return 0 if failure == 0 else 1
 
 if __name__ == "__main__":
     sys.exit(main())

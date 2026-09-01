@@ -82,3 +82,15 @@
 2026-09-01 19:25:59,586 - __main__   - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use%:6%
 2026-09-01 19:25:59,590 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use%:30%
 2026-09-01 19:26:00,027 - __main__   - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.4G, avail:34G, use%:20%
+2026-09-01 23:43:43,527 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use%:30%
+2026-09-01 23:43:43,559 - __main__   - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use%:6%
+2026-09-01 23:43:43,978 - __main__   - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.4G, avail:34G, use%:20%
+2026-09-01 23:43:59,954 - __main__   - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use%:6%
+2026-09-01 23:43:59,955 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use%:30%
+2026-09-01 23:44:07,698 - __main__   - ERROR  - root@192.168.102.20 连接超时（8秒内 ssh 未完成连接+执行）
+2026-09-01 23:44:56,107 - __main__   - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use%:6%
+2026-09-01 23:44:56,127 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use%:30%
+2026-09-01 23:44:56,503 - __main__   - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.4G, avail:34G, use%:20%
+2026-09-01 23:47:32,275 - __main__   - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use%:6%
+2026-09-01 23:47:32,321 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use%:30%
+2026-09-01 23:47:32,686 - __main__   - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.4G, avail:34G, use%:20%

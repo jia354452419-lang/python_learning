@@ -2,15 +2,29 @@ import sys
 import logging
 import subprocess
 import ipaddress
+import argparse
 from pathlib import Path
 from datetime import datetime
 from logging.handlers import TimedRotatingFileHandler
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-def get_conf() -> list:
+
+
+def get_args() -> argparse.Namespace:
+    argparser = argparse.ArgumentParser(description='ssh巡检')
+    argparser.add_argument('-u','--user',type=str,default='root',help='用户名')
+    argparser.add_argument('-f','--hosts',type=str,default=Path(__file__).parent /'ssh.conf',help='配置清单')
+    argparser.add_argument('--host',type=str,default=None,help='ip地址')
+    argparser.add_argument('-p','--port',type=int,default=22,help='端口号')
+    argparser.add_argument('-w','--workers',type=int, default=3, help='并发数')
+    argparser.add_argument('--warning_percent',type=int,default=85,help='告警阈值')
+    return argparser.parse_args()
+
+
+def get_conf(path: Path) -> list:
     hosts = []
     try:
-        with open(Path(__file__).parent / "ssh.conf", 'r', encoding='utf-8') as f:
+        with open(path, 'r', encoding='utf-8') as f:
             for line  in f:
                 parts = line.strip().split(',')
                 if line.startswith('#') or len(parts) != 3:
@@ -29,10 +43,22 @@ def get_conf() -> list:
                 username = str(parts[2])
                 hosts.append({'ip':ip, 'port':port, 'username':username})
     except FileNotFoundError:
-        log.error(f"配置文件没找到 {Path(__file__).parent} / ssh.conf")
+        log.error(f"配置文件没找到 {path}")
         sys.exit(1)
 
     return hosts
+
+
+def get_conf_argparse(args: argparse.Namespace) -> list:
+    hosts = []
+    try:
+        ipaddress.ip_address(args.host)
+    except ValueError:
+        log.error(f"{args.host} 输入参数错误")
+        sys.exit(1)
+    hosts.append({'ip':args.host, 'port':args.port, 'username':args.user})
+    return hosts
+
 
 
 # 日志函数
@@ -65,7 +91,7 @@ def get_info(msg: str) -> tuple:
         return None
     return part[1], part[2], part[3], part[4]
 
-def run_cmd_one(host: dict) -> dict:
+def run_cmd_one(host: dict,warning: int) -> dict:
     cmd = ["ssh", "-o", "BatchMode=yes",
            "-o", "ConnectTimeout=5",
            "-o", "StrictHostKeyChecking=accept-new",
@@ -118,17 +144,17 @@ def run_cmd_one(host: dict) -> dict:
     cmd_result["detail"] = "执行成功"
     cmd_result["result"] = {'size':size, 'used':used, 'avail':avail, 'use_percent':use_p}
 
-    if int(use_p.strip('%')) > 85:
+    if int(use_p.strip('%')) > int(warning):
         cmd_result["status"] = "WARNING"
-        cmd_result["detail"] = "磁盘使用超过85%"
+        cmd_result["detail"] = f"磁盘使用超过{warning}%"
     return cmd_result
 
-def run_cmd_parallel(hosts: list) -> list:
+def run_cmd_parallel(hosts: list,workers: int,warning: int) -> list:
 
     last_list = []
 
-    with ThreadPoolExecutor(max_workers=3) as pool:
-        future_list = {pool.submit(run_cmd_one,host):host for host in hosts}
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        future_list = {pool.submit(run_cmd_one,host,warning):host for host in hosts}
         for future in as_completed(future_list):
             host_info = future_list[future]
             try:
@@ -178,9 +204,24 @@ def main():
     3 并发执行
     4 打印报告
     """
+
     setup_log()
-    hosts = get_conf()
-    res = run_cmd_parallel(hosts)
+
+    args = get_args()
+    # 并发连接数
+    workers = args.workers
+    # 告警阈值
+    threshold = args.warning_percent
+    # 配置文件
+    conf_file = args.hosts
+    # 判断配置
+    if args.host:
+        hosts = get_conf_argparse(args)
+    else:
+        hosts = get_conf(conf_file)
+
+
+    res = run_cmd_parallel(hosts,workers,threshold)
     success, warning, failure = print_report(res)
 
     return 0 if failure == 0 else 1

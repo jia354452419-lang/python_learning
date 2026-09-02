@@ -7,3 +7,22 @@
 2026-09-02 00:07:08,961 - __main__   - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use_percent:6%
 2026-09-02 00:07:08,979 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use_percent:30%
 2026-09-02 00:07:16,721 - __main__   - ERROR  - root@192.168.102.20 连接超时（8秒内 ssh 未完成连接+执行）
+2026-09-02 00:13:48,569 - __main__   - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use_percent:6%
+2026-09-02 00:13:48,578 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use_percent:30%
+2026-09-02 00:13:48,982 - __main__   - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.4G, avail:34G, use_percent:20%
+2026-09-02 13:10:41,578 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use_percent:30%
+2026-09-02 13:10:41,607 - __main__   - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use_percent:6%
+2026-09-02 13:10:42,070 - __main__   - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.4G, avail:34G, use_percent:20%
+2026-09-02 13:14:32,004 - __main__   - ERROR  - aaa ip地址错误 跳过
+2026-09-02 13:14:32,004 - __main__   - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-02 13:14:32,282 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use_percent:30%
+2026-09-02 13:14:37,325 - __main__   - ERROR  - root@192.0.0.0, ssh: connect to host 192.0.0.0 port 22: Connection timed out
+2026-09-02 13:14:40,013 - __main__   - ERROR  - root@192.168.102.20 连接超时（8秒内 ssh 未完成连接+执行）
+2026-09-02 13:14:40,030 - __main__   - ERROR  - root@192.168.102.23 连接超时（8秒内 ssh 未完成连接+执行）
+2026-09-02 13:15:36,762 - __main__   - ERROR  - aaa ip地址错误 跳过
+2026-09-02 13:15:36,762 - __main__   - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-02 13:15:37,052 - __main__   - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use_percent:30%
+2026-09-02 13:15:37,054 - __main__   - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use_percent:6%
+2026-09-02 13:15:37,416 - __main__   - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.4G, avail:34G, use_percent:20%
+2026-09-02 13:15:42,079 - __main__   - ERROR  - root@192.0.0.0, ssh: connect to host 192.0.0.0 port 22: Connection timed out
+2026-09-02 13:20:10,850 - __main__   - ERROR  - 配置文件没找到 C:\Program Files (x86)\jtz\工作区\python脚本\python_learning\ssh_cmd / ssh.conf

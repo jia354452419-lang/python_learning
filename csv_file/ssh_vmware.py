@@ -3,6 +3,7 @@ import logging
 import subprocess
 import ipaddress
 import argparse
+import csv
 from pathlib import Path
 from datetime import datetime
 from logging.handlers import TimedRotatingFileHandler
@@ -10,7 +11,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 
-def get_args() -> argparse.Namespace:
+def get_args(date_time) -> argparse.Namespace:
     argparser = argparse.ArgumentParser(description='ssh巡检')
     argparser.add_argument('-u','--user',type=str,default='root',help='用户名')
     argparser.add_argument('-f','--hosts',type=str,default=Path(__file__).parent /'ssh.conf',help='配置清单')
@@ -18,6 +19,7 @@ def get_args() -> argparse.Namespace:
     argparser.add_argument('-p','--port',type=int,default=22,help='端口号')
     argparser.add_argument('-w','--workers',type=int, default=3, help='并发数')
     argparser.add_argument('--warning_percent',type=int,default=85,help='告警阈值')
+    argparser.add_argument("--csv",type=Path,nargs='?',const=Path(__file__).parent / f"report_{date_time}.csv",default=None,help="导出csv文件")
     return argparser.parse_args()
 
 def get_conf(path: Path) -> list:
@@ -102,9 +104,11 @@ def run_cmd_one(host: dict,warning: int) -> dict:
     cmd_result = {
         "ip": host['ip'],
         "username": host['username'],
+        "port": host['port'],
         "status": "FAILURE",
         "detail": "",
-        "result": {}
+        "result": {},
+        "use_percent": "error"
     }
 
     ssh_info = host["username"] + '@' + host["ip"]
@@ -137,6 +141,7 @@ def run_cmd_one(host: dict,warning: int) -> dict:
     cmd_result["status"] = "SUCCESS"
     cmd_result["detail"] = "执行成功"
     cmd_result["result"] = {'size':size, 'used':used, 'avail':avail, 'use_percent':use_p}
+    cmd_result["use_percent"] = use_p
 
     if int(use_p.strip('%')) > int(warning):
         cmd_result["status"] = "WARNING"
@@ -157,19 +162,24 @@ def run_cmd_parallel(hosts: list,workers: int,warning: int) -> list:
                 result = {
                     'ip': host_info['ip'],
                     'username': host_info['username'],
+                    'port': host_info['port'],
                     'status': 'FAILURE',
                     'detail': f"{host_info['username']}@{host_info['ip']} 命令执行失败, {str(e)}",
-                    'result': {}
+                    'result': {},
+                    'use_percent': 'error'
                 }
                 log.error(f"{host_info['username']}@{host_info['ip']} 命令执行失败")
             last_list.append(result)
     return last_list
 
-def print_report(last_list: list) -> tuple:
+def print_report(last_list: list, date_time) -> tuple:
 
     success = 0
     warning = 0
     failure = 0
+
+    csv_list = []
+
 
     print('-'*50)
     print('-'*20,datetime.now().strftime('%Y-%m-%d %H:%M:%S'),'-'*20)
@@ -184,9 +194,25 @@ def print_report(last_list: list) -> tuple:
             warning += 1
         print(f"{result['status']} | {result['username']}@{result['ip']:<18} | {result['detail']:<30} | size: {result['result'].get('size','error'):<10} | used: {result['result'].get('used','error'):<10} | avail: {result['result'].get('avail','error'):<10} | use_percent: {result['result'].get('use_percent','error'):<10} ")
 
+        csv_dict = {"timestamp":date_time, "ip":result['ip'], "port":result['port'], "status":result['status'], "use_percent":result['use_percent'], "detail":result["detail"]}
+        csv_list.append(csv_dict)
+
+
     print('-'*50)
     print(f"成功 {success}，警告： {warning}, 失败 {failure}，共 {success + warning + failure} 台")
-    return success, warning, failure
+    print('-'*50)
+
+    return success, warning, failure, csv_list
+
+def csv_print(csv_list: list,csv_path: Path|None):
+    if csv_path is not None :
+        with open(csv_path, 'w', newline='',encoding="utf-8-sig") as csvfile:
+            filehead = ["timestamp","ip","port","status","use_percent","detail"]
+            writer = csv.DictWriter(csvfile,fieldnames=filehead)
+            writer.writeheader()
+            for row in csv_list:
+                writer.writerow(row)
+        log.info(f"表格已导出：{csv_path}")
 
 def main():
     """
@@ -196,24 +222,30 @@ def main():
     4 打印报告
     """
 
+    date_time = datetime.now().strftime('%Y-%m-%d_%H%M%S')
+
     setup_log()
 
-    args = get_args()
+    args = get_args(date_time)
     # 并发连接数
     workers = args.workers
     # 告警阈值
     threshold = args.warning_percent
     # 配置文件
     conf_file = args.hosts
+    # 输出文件
+    csv_path = args.csv
+
     # 判断配置
     if args.host:
         hosts = get_conf_argparse(args)
     else:
         hosts = get_conf(conf_file)
 
-
     res = run_cmd_parallel(hosts,workers,threshold)
-    success, warning, failure = print_report(res)
+    success, warning, failure, csv_list = print_report(res,date_time)
+
+    csv_print(csv_list,csv_path)
 
     return 0 if failure == 0 else 1
 

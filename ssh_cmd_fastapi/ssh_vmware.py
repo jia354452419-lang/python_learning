@@ -20,6 +20,10 @@ def get_args() -> argparse.Namespace:
     argparser.add_argument('--warning_percent',type=int,default=85,help='告警阈值')
     return argparser.parse_args()
 
+
+class ConfigNotFound(Exception):
+    pass
+
 def get_conf(path: Path) -> list:
     hosts = []
     try:
@@ -43,7 +47,7 @@ def get_conf(path: Path) -> list:
                 hosts.append({'ip':ip, 'port':port, 'username':username})
     except FileNotFoundError:
         log.error(f"配置文件没找到 {path}")
-        sys.exit(1)
+        raise ConfigNotFound("配置文件没找到")
 
     return hosts
 

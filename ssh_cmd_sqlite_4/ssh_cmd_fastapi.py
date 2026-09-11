@@ -9,7 +9,7 @@ from datetime import datetime
 from contextlib import asynccontextmanager
 from prometheus_client import Counter, Gauge, generate_latest
 from fastapi.responses import PlainTextResponse
-
+from ssh_cmd_db import create_db
 
 
 
@@ -38,6 +38,7 @@ async def lifespan(app: FastAPI):
     ssh_vmware.get_conf(Path(__file__).parent / "ssh.conf")
     service_start = time.time()
     service_start_time.set(service_start)
+    create_db()
     yield
 
 

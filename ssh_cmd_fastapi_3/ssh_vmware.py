@@ -10,6 +10,8 @@ from logging.handlers import TimedRotatingFileHandler
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
+class ConfigNotFound(Exception):
+    pass
 
 def get_args(date_time) -> argparse.Namespace:
     argparser = argparse.ArgumentParser(description='ssh巡检')

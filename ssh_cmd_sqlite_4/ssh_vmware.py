@@ -8,8 +8,11 @@ from pathlib import Path
 from datetime import datetime
 from logging.handlers import TimedRotatingFileHandler
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from ssh_cmd_db import insert_newline
 
 
+class ConfigNotFound(Exception):
+    pass
 
 def get_args(date_time) -> argparse.Namespace:
     argparser = argparse.ArgumentParser(description='ssh巡检')
@@ -151,6 +154,7 @@ def run_cmd_one(host: dict,warning: int) -> dict:
 def run_cmd_parallel(hosts: list,workers: int,warning: int) -> list:
 
     last_list = []
+    date_time = datetime.now().strftime('%Y-%m-%d_%H%M%S')
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
         future_list = {pool.submit(run_cmd_one,host,warning):host for host in hosts}
@@ -170,6 +174,9 @@ def run_cmd_parallel(hosts: list,workers: int,warning: int) -> list:
                 }
                 log.error(f"{host_info['username']}@{host_info['ip']} 命令执行失败")
             last_list.append(result)
+
+    *items, result_list = print_report(last_list,date_time)
+    db_insert(result_list)
     return last_list
 
 def print_report(last_list: list, date_time) -> tuple:
@@ -178,7 +185,7 @@ def print_report(last_list: list, date_time) -> tuple:
     warning = 0
     failure = 0
 
-    csv_list = []
+    result_list = []
 
 
     print('-'*50)
@@ -194,15 +201,15 @@ def print_report(last_list: list, date_time) -> tuple:
             warning += 1
         print(f"{result['status']} | {result['username']}@{result['ip']:<18} | {result['detail']:<30} | size: {result['result'].get('size','error'):<10} | used: {result['result'].get('used','error'):<10} | avail: {result['result'].get('avail','error'):<10} | use_percent: {result['result'].get('use_percent','error'):<10} ")
 
-        csv_dict = {"timestamp":date_time, "ip":result['ip'], "port":result['port'], "status":result['status'], "use_percent":result['use_percent'], "detail":result["detail"]}
-        csv_list.append(csv_dict)
+        result_dict = {"timestamp":date_time, "ip":result['ip'], "port":result['port'], "status":result['status'], "use_percent":result['use_percent'], "detail":result["detail"]}
+        result_list.append(result_dict)
 
 
     print('-'*50)
     print(f"成功 {success}，警告： {warning}, 失败 {failure}，共 {success + warning + failure} 台")
     print('-'*50)
 
-    return success, warning, failure, csv_list
+    return success, warning, failure, result_list
 
 def csv_print(csv_list: list,csv_path: Path|None):
     if csv_path is not None :
@@ -213,6 +220,17 @@ def csv_print(csv_list: list,csv_path: Path|None):
             for row in csv_list:
                 writer.writerow(row)
         log.info(f"表格已导出：{csv_path}")
+
+def db_insert(result_list):
+    group_id = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    try:
+        for result in result_list:
+            insert_newline(group_id,result['timestamp'],result['ip'],result['port'],result['status'],result['use_percent'],result['detail'])
+        log.info(f"数据写入成功{group_id}")
+    except Exception as e:
+        log.error(f"数据库操作失败,{e}")
+
+
 
 def main():
     """

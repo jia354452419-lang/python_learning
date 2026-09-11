@@ -213,6 +213,8 @@ curl.exe http://127.0.0.1:8000/run/check_result -w '\n%{http_code}\n'
 """
 
 """
+# 生成32位密码
+python -c "import secrets; print(secrets.token_hex(32))"
 # windows添加环境变量
 $env:API_TOKEN = "6fbc6a69c8b71c99121ca41a6d9e882fdadd405ed185e01e9e9a8336e4f2fff1"
 # 启动命令

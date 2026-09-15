@@ -26,3 +26,12 @@ def test_get_conf_bad_lines_2(tmp_path):
     conf_file = tmp_get_conf_file(tmp_path,"#坏行 \n a,22,root\n 192.168.102.20,a,root \n192.168.102.20,22,root")
     assert get_conf(conf_file) == [{"ip": "192.168.102.20", "port": 22, "username": "root"}]
 
+
+
+
+
+
+
+
+
+

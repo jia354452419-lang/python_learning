@@ -29,14 +29,14 @@ def insert_newline(groupid, created_at, ip, port, status, use_percent, detail):
 
 
 # 按最新groupid查询
-def quire_data_latest():
+def query_data_latest():
     with sqlite3.connect(DB_NAME) as conn:
         conn.row_factory = sqlite3.Row
         res = conn.execute('''SELECT * FROM ssh_cmd WHERE GROUPID = (SELECT MAX(GROUPID) FROM ssh_cmd)''')
         return [dict(i) for i in res.fetchall()]
 
 # 按状态查询
-def quire_data_status(status):
+def query_data_status(status):
     with sqlite3.connect(DB_NAME) as conn:
         conn.row_factory = sqlite3.Row
         res = conn.execute("""SELECT * FROM ssh_cmd WHERE STATUS = ?""",(status,))

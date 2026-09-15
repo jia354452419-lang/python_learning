@@ -9,7 +9,8 @@ from datetime import datetime
 from contextlib import asynccontextmanager
 from prometheus_client import Counter, Gauge, generate_latest
 from fastapi.responses import PlainTextResponse
-from ssh_cmd_db import create_db
+from typing import Literal
+from ssh_cmd_db import create_db,query_data_latest,query_data_status
 
 
 
@@ -94,6 +95,7 @@ class CheckRequest(BaseModel):
     threshold: int = 85
     workers: int = 3
 
+
 def launch(workers_launch: int, threshold_launch: int) -> None:
     """
     运行检查程序
@@ -160,15 +162,17 @@ def run_check(body: CheckRequest, background_tasks: BackgroundTasks) -> dict:
     background_tasks.add_task(launch, body.workers, body.threshold)
     return {"status": "PENDING","msg": "正在运行"}
 
-@app.get("/run/check_result", dependencies=[Depends(token_verify)])
-def get_result() -> dict:
-    """
-    获取执行结果
-    """
-    if response:
-        return response
-    else:
-        raise HTTPException(status_code=404,detail="请稍后查询")
+
+# 本次使用sqlite作为数据读取源，放弃内存存储
+# @app.get("/run/check_result", dependencies=[Depends(token_verify)])
+# def get_result() -> dict:
+#     """
+#     获取执行结果
+#     """
+#     if response:
+#         return response
+#     else:
+#         raise HTTPException(status_code=404,detail="请稍后查询")
 
 
 
@@ -181,6 +185,17 @@ def show_metrics():
     使用generate_latest() ， 直接暴露设值的指标信息
     """
     return generate_latest()
+
+
+
+@app.get("/querydata/latest", dependencies=[Depends(token_verify)])
+def api_quire_data_lalest():
+    return query_data_latest()
+
+@app.get("/querydata/status", dependencies=[Depends(token_verify)])
+def api_quire_data_status(status: Literal["SUCCESS", "WARNING", "FAILURE"]):
+    return query_data_status(status)
+
 
 
 

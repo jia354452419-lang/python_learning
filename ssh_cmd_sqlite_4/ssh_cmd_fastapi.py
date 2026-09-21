@@ -197,7 +197,7 @@ def api_quire_data_status(status: Literal["SUCCESS", "WARNING", "FAILURE"]):
     return query_data_status(status)
 
 
-
+# http://127.0.0.1:8000/querydata/status?status=SUCCESS&token=你的token
 
 
 

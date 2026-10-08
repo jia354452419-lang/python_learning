@@ -3,7 +3,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 from kubernetes import client, config
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 # 引入db模块
 from container_status_db import insert_pods_status
@@ -27,11 +27,13 @@ def set_up_log():
 
 
 # 获取配置文件
-
 def get_k8s_config():
-    config.load_kube_config()
+    try:
+        config.load_incluster_config()    # 集群内：读 SA token
+    except config.ConfigException:
+        config.load_kube_config()         # 集群外：开发机 kubeconfig
+get_k8s_config()
 
-config.load_kube_config()
 # 创建API对象
 core = client.CoreV1Api()
 apps = client.AppsV1Api()
@@ -45,7 +47,7 @@ def pods_status() -> list:
     :return: list
     """
     result = []
-    group_id = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    group_id = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     pods = core.list_pod_for_all_namespaces(_request_timeout=6)
     for pod in pods.items:
         if pod.status.phase == "Running" or pod.status.phase == "Succeeded":
@@ -81,7 +83,7 @@ def containers_status() -> list:
     :return: list
     """
     result = []
-    group_id = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    group_id = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     pods = core.list_pod_for_all_namespaces(_request_timeout=6)
     for pod in pods.items:
         pod_name = pod.metadata.name
@@ -118,7 +120,7 @@ def replica_deployment_status():
     获取k8s集群deployment副本数当前状态与期望状态
     """
     result = []
-    group_id = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    group_id = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     deployments = apps.list_deployment_for_all_namespaces(_request_timeout=6)
     for deployment in deployments.items:
         ready_num = deployment.status.ready_replicas or 0

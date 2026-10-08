@@ -18,7 +18,7 @@ def create_db_pods_status():
                         SUMMARIZE TEXT,
                         DETAIL TEXT,
                         CHECK_TYPE TEXT,
-                        CREATE_TIME TIMESTAMP NOT NULL DEFAULT (datetime('now','localtime')))
+                        CREATE_TIME TIMESTAMP NOT NULL DEFAULT (datetime('now')))
         ''')
 
 

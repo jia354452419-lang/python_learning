@@ -1,0 +1,31 @@
+2026-09-11 18:44:41,227 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-11 18:44:41,228 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-11 18:45:50,964 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-11 18:45:50,964 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-11 18:47:31,428 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-11 18:47:31,429 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-11 18:47:31,736 - ssh_vmware - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use_percent:6%
+2026-09-11 18:47:31,739 - ssh_vmware - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use_percent:30%
+2026-09-11 18:47:31,854 - ssh_vmware - ERROR  - root@192.168.96.116, root@192.168.96.116: Permission denied (publickey,password).
+2026-09-11 18:47:32,161 - ssh_vmware - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.5G, avail:34G, use_percent:21%
+2026-09-11 18:47:36,785 - ssh_vmware - ERROR  - root@192.0.0.0, ssh: connect to host 192.0.0.0 port 22: Connection timed out
+2026-09-11 18:47:36,894 - ssh_vmware - ERROR  - root@192.1.0.0, ssh: connect to host 192.1.0.0 port 22: Connection timed out
+2026-09-11 18:47:38,974 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-11 18:47:38,975 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-11 18:47:39,249 - ssh_vmware - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use_percent:30%
+2026-09-11 18:47:39,250 - ssh_vmware - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use_percent:6%
+2026-09-11 18:47:39,274 - ssh_vmware - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.5G, avail:34G, use_percent:21%
+2026-09-11 18:47:39,361 - ssh_vmware - ERROR  - root@192.168.96.116, root@192.168.96.116: Permission denied (publickey,password).
+2026-09-11 18:47:44,275 - ssh_vmware - ERROR  - root@192.0.0.0, ssh: connect to host 192.0.0.0 port 22: Connection timed out
+2026-09-11 18:47:44,308 - ssh_vmware - ERROR  - root@192.1.0.0, ssh: connect to host 192.1.0.0 port 22: Connection timed out
+2026-09-11 18:57:44,108 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-11 18:57:44,108 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-11 18:58:07,479 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-11 18:58:07,480 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-11 18:58:07,743 - ssh_vmware - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use_percent:6%
+2026-09-11 18:58:07,765 - ssh_vmware - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use_percent:30%
+2026-09-11 18:58:07,860 - ssh_vmware - ERROR  - root@192.168.96.116, root@192.168.96.116: Permission denied (publickey,password).
+2026-09-11 18:58:08,222 - ssh_vmware - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.5G, avail:34G, use_percent:21%
+2026-09-11 18:58:12,803 - ssh_vmware - ERROR  - root@192.0.0.0, ssh: connect to host 192.0.0.0 port 22: Connection timed out
+2026-09-11 18:58:12,894 - ssh_vmware - ERROR  - root@192.1.0.0, ssh: connect to host 192.1.0.0 port 22: Connection timed out
+2026-09-11 18:58:12,958 - ssh_vmware - INFO   - 数据写入成功2026-09-11 18:58:12

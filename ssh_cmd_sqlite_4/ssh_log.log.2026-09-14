@@ -1,0 +1,62 @@
+2026-09-14 10:23:34,345 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 10:23:34,346 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 10:27:41,290 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 10:27:41,290 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 10:27:41,552 - ssh_vmware - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use_percent:6%
+2026-09-14 10:27:41,582 - ssh_vmware - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use_percent:30%
+2026-09-14 10:27:41,664 - ssh_vmware - ERROR  - root@192.168.96.116, root@192.168.96.116: Permission denied (publickey,password).
+2026-09-14 10:27:41,984 - ssh_vmware - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.5G, avail:34G, use_percent:21%
+2026-09-14 10:27:46,614 - ssh_vmware - ERROR  - root@192.0.0.0, ssh: connect to host 192.0.0.0 port 22: Connection timed out
+2026-09-14 10:27:46,705 - ssh_vmware - ERROR  - root@192.1.0.0, ssh: connect to host 192.1.0.0 port 22: Connection timed out
+2026-09-14 10:27:46,775 - ssh_vmware - INFO   - 数据写入成功2026-09-14 10:27:46
+2026-09-14 10:28:47,947 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 10:28:47,947 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 10:28:48,228 - ssh_vmware - INFO   - root@192.168.102.23 获取成功 Size:1.8T, used:101G, avail:1.7T, use_percent:6%
+2026-09-14 10:28:48,243 - ssh_vmware - INFO   - root@192.168.102.22 获取成功 Size:1.8T, used:526G, avail:1.3T, use_percent:30%
+2026-09-14 10:28:48,350 - ssh_vmware - ERROR  - root@192.168.96.116, root@192.168.96.116: Permission denied (publickey,password).
+2026-09-14 10:28:48,624 - ssh_vmware - INFO   - root@192.168.102.20 获取成功 Size:44G, used:8.5G, avail:34G, use_percent:21%
+2026-09-14 10:28:53,275 - ssh_vmware - ERROR  - root@192.0.0.0, ssh: connect to host 192.0.0.0 port 22: Connection timed out
+2026-09-14 10:28:53,387 - ssh_vmware - ERROR  - root@192.1.0.0, ssh: connect to host 192.1.0.0 port 22: Connection timed out
+2026-09-14 10:28:53,449 - ssh_vmware - INFO   - 数据写入成功2026-09-14 10:28:53
+2026-09-14 10:31:13,135 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 10:31:13,135 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 10:38:43,357 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 10:38:43,357 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 10:44:47,342 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 10:44:47,343 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 10:47:56,354 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 10:47:56,354 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 10:51:09,694 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 10:51:09,694 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 10:53:06,289 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 10:53:06,289 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 10:55:52,989 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 10:55:52,989 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 10:56:21,532 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 10:56:21,532 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 11:20:51,611 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 11:20:51,614 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 11:31:28,562 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 11:31:28,562 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 11:38:42,296 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 11:38:42,302 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 11:39:10,686 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 11:39:10,686 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 11:39:24,236 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 11:39:24,236 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 13:49:29,612 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 13:49:29,613 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 13:53:41,121 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 13:53:41,122 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 13:54:24,071 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 13:54:24,072 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 13:55:19,807 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 13:55:19,808 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 13:56:38,766 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 13:56:38,768 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 13:56:43,687 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 13:56:43,690 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 14:11:05,328 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 14:11:05,328 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过
+2026-09-14 14:12:47,952 - ssh_vmware - ERROR  - aaa ip地址错误 跳过
+2026-09-14 14:12:47,952 - ssh_vmware - ERROR  - 192.168.102.29 port类型错误，应该为int 跳过

@@ -1,0 +1,351 @@
+2026-09-21 13:25:54,439  - INFO - crashloop-counter                                  -- Running
+2026-09-21 13:25:54,450  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-21 13:25:54,459  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-21 13:25:54,469  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-21 13:25:54,478  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-21 13:25:54,489  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-21 13:25:54,497  - ERROR - failed-job                                         -- Failed
+2026-09-21 13:25:54,507  - INFO - multi-container-demo                               -- Running
+2026-09-21 13:25:54,517  - ERROR - pending-imagepull                                  -- Pending
+2026-09-21 13:25:54,525  - ERROR - pending-unschedulable                              -- Pending
+2026-09-21 13:25:54,533  - INFO - succeeded-job                                      -- Succeeded
+2026-09-21 13:59:30,265  - INFO - crashloop-counter                                  -- Running
+2026-09-21 13:59:30,287  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-21 13:59:30,303  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-21 13:59:30,318  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-21 13:59:30,330  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-21 13:59:30,345  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-21 13:59:30,358  - ERROR - failed-job                                         -- Failed
+2026-09-21 13:59:30,371  - INFO - multi-container-demo                               -- Running
+2026-09-21 13:59:30,383  - ERROR - pending-imagepull                                  -- Pending
+2026-09-21 13:59:30,394  - ERROR - pending-unschedulable                              -- Pending
+2026-09-21 13:59:30,405  - INFO - succeeded-job                                      -- Succeeded
+2026-09-21 14:04:09,422  - INFO - crashloop-counter                                  -- Running
+2026-09-21 14:04:09,431  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-21 14:04:09,439  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-21 14:04:09,447  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-21 14:04:09,455  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-21 14:04:09,464  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-21 14:04:09,472  - ERROR - failed-job                                         -- Failed
+2026-09-21 14:04:09,483  - INFO - multi-container-demo                               -- Running
+2026-09-21 14:04:09,493  - ERROR - pending-imagepull                                  -- Pending
+2026-09-21 14:04:09,501  - ERROR - pending-unschedulable                              -- Pending
+2026-09-21 14:04:09,509  - INFO - succeeded-job                                      -- Succeeded
+2026-09-21 14:04:09,538  - ERROR - crashloop-counter                                  -- main             -- 1054
+2026-09-21 14:04:09,547  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-21 14:04:09,557  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-21 14:04:09,566  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-21 14:04:09,575  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-21 14:04:09,584  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-21 14:04:09,592  - INFO - failed-job                                         -- main             -- 0
+2026-09-21 14:04:09,600  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-21 14:04:09,608  - ERROR - multi-container-demo                               -- broken-sidecar   -- 837
+2026-09-21 14:04:09,616  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-21 14:04:09,625  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-21 14:04:09,633  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-21 14:04:09,662  - INFO - deploy-healthy                                     -- now:2            -- spec:2
+2026-09-21 14:04:09,671  - ERROR - deploy-replica-mismatch                            -- now:0            -- spec:3
+2026-09-21 14:04:53,395  - INFO - crashloop-counter                                  -- Running
+2026-09-21 14:04:53,405  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-21 14:04:53,417  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-21 14:04:53,428  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-21 14:04:53,441  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-21 14:04:53,450  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-21 14:04:53,460  - ERROR - failed-job                                         -- Failed
+2026-09-21 14:04:53,472  - INFO - multi-container-demo                               -- Running
+2026-09-21 14:04:53,482  - ERROR - pending-imagepull                                  -- Pending
+2026-09-21 14:04:53,493  - ERROR - pending-unschedulable                              -- Pending
+2026-09-21 14:04:53,501  - INFO - succeeded-job                                      -- Succeeded
+2026-09-21 15:36:03,741  - INFO - crashloop-counter                                  -- Running
+2026-09-21 15:36:03,750  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-21 15:36:03,762  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-21 15:36:03,772  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-21 15:36:03,779  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-21 15:36:03,789  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-21 15:36:03,798  - ERROR - failed-job                                         -- Failed
+2026-09-21 15:36:03,806  - INFO - multi-container-demo                               -- Running
+2026-09-21 15:36:03,815  - ERROR - pending-imagepull                                  -- Pending
+2026-09-21 15:36:03,824  - ERROR - pending-unschedulable                              -- Pending
+2026-09-21 15:36:03,833  - INFO - succeeded-job                                      -- Succeeded
+2026-09-21 15:36:09,104  - ERROR - crashloop-counter                                  -- main             -- 1072
+2026-09-21 15:36:09,115  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-21 15:36:09,123  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-21 15:36:09,130  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-21 15:36:09,140  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-21 15:36:09,150  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-21 15:36:09,160  - INFO - failed-job                                         -- main             -- 0
+2026-09-21 15:36:09,170  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-21 15:36:09,176  - ERROR - multi-container-demo                               -- broken-sidecar   -- 855
+2026-09-21 15:36:09,186  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-21 15:36:09,195  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-21 15:36:09,203  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-21 15:36:13,316  - INFO - deploy-healthy                                     -- now:2            -- spec:2
+2026-09-21 15:36:13,334  - ERROR - deploy-replica-mismatch                            -- now:0            -- spec:3
+2026-09-21 15:36:22,143  - INFO - deploy-healthy                                     -- now:2            -- spec:2
+2026-09-21 15:36:22,165  - ERROR - deploy-replica-mismatch                            -- now:0            -- spec:3
+2026-09-21 15:36:23,401  - ERROR - crashloop-counter                                  -- main             -- 1072
+2026-09-21 15:36:23,419  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-21 15:36:23,432  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-21 15:36:23,443  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-21 15:36:23,453  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-21 15:36:23,464  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-21 15:36:23,474  - INFO - failed-job                                         -- main             -- 0
+2026-09-21 15:36:23,483  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-21 15:36:23,494  - ERROR - multi-container-demo                               -- broken-sidecar   -- 855
+2026-09-21 15:36:23,501  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-21 15:36:23,512  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-21 15:36:23,522  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-21 15:36:24,690  - ERROR - crashloop-counter                                  -- main             -- 1072
+2026-09-21 15:36:24,710  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-21 15:36:24,722  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-21 15:36:24,734  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-21 15:36:24,747  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-21 15:36:24,757  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-21 15:36:24,765  - INFO - failed-job                                         -- main             -- 0
+2026-09-21 15:36:24,776  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-21 15:36:24,786  - ERROR - multi-container-demo                               -- broken-sidecar   -- 855
+2026-09-21 15:36:24,795  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-21 15:36:24,807  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-21 15:36:24,816  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-21 15:54:49,309  - INFO - crashloop-counter                                  -- Running
+2026-09-21 15:54:49,316  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-21 15:54:49,324  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-21 15:54:49,334  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-21 15:54:49,347  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-21 15:54:49,358  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-21 15:54:49,368  - ERROR - failed-job                                         -- Failed
+2026-09-21 15:54:49,376  - INFO - multi-container-demo                               -- Running
+2026-09-21 15:54:49,384  - ERROR - pending-imagepull                                  -- Pending
+2026-09-21 15:54:49,392  - ERROR - pending-unschedulable                              -- Pending
+2026-09-21 15:54:49,401  - INFO - succeeded-job                                      -- Succeeded
+2026-09-21 15:54:49,423  - ERROR - crashloop-counter                                  -- main             -- 1075
+2026-09-21 15:54:49,432  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-21 15:54:49,440  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-21 15:54:49,448  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-21 15:54:49,456  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-21 15:54:49,464  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-21 15:54:49,473  - INFO - failed-job                                         -- main             -- 0
+2026-09-21 15:54:49,482  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-21 15:54:49,490  - ERROR - multi-container-demo                               -- broken-sidecar   -- 858
+2026-09-21 15:54:49,498  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-21 15:54:49,506  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-21 15:54:49,514  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-21 15:54:49,558  - INFO - deploy-healthy                                     -- now:2            -- spec:2
+2026-09-21 15:54:49,566  - ERROR - deploy-replica-mismatch                            -- now:0            -- spec:3
+2026-09-21 15:56:34,087  - INFO - crashloop-counter                                  -- Running
+2026-09-21 15:56:34,107  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-21 15:56:34,119  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-21 15:56:34,130  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-21 15:56:34,139  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-21 15:56:34,147  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-21 15:56:34,157  - ERROR - failed-job                                         -- Failed
+2026-09-21 15:56:34,165  - INFO - multi-container-demo                               -- Running
+2026-09-21 15:56:34,173  - ERROR - pending-imagepull                                  -- Pending
+2026-09-21 15:56:34,183  - ERROR - pending-unschedulable                              -- Pending
+2026-09-21 15:56:34,194  - INFO - succeeded-job                                      -- Succeeded
+2026-09-21 15:56:34,219  - ERROR - crashloop-counter                                  -- main             -- 1076
+2026-09-21 15:56:34,231  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-21 15:56:34,241  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-21 15:56:34,249  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-21 15:56:34,257  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-21 15:56:34,267  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-21 15:56:34,275  - INFO - failed-job                                         -- main             -- 0
+2026-09-21 15:56:34,284  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-21 15:56:34,293  - ERROR - multi-container-demo                               -- broken-sidecar   -- 859
+2026-09-21 15:56:34,301  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-21 15:56:34,309  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-21 15:56:34,318  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-21 15:56:34,371  - INFO - deploy-healthy                                     -- now:2            -- spec:2
+2026-09-21 15:56:34,382  - ERROR - deploy-replica-mismatch                            -- now:0            -- spec:3
+2026-09-21 16:58:15,086  - INFO - crashloop-counter                                  -- Running
+2026-09-21 16:58:15,098  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-21 16:58:15,110  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-21 16:58:15,122  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-21 16:58:15,132  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-21 16:58:15,143  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-21 16:58:15,154  - ERROR - failed-job                                         -- Failed
+2026-09-21 16:58:15,167  - INFO - multi-container-demo                               -- Running
+2026-09-21 16:58:15,178  - ERROR - pending-imagepull                                  -- Pending
+2026-09-21 16:58:15,188  - ERROR - pending-unschedulable                              -- Pending
+2026-09-21 16:58:15,199  - INFO - succeeded-job                                      -- Succeeded
+2026-09-21 16:58:17,586  - INFO - deploy-healthy                                     -- now:2            -- spec:2
+2026-09-21 16:58:17,612  - ERROR - deploy-replica-mismatch                            -- now:0            -- spec:3
+2026-09-21 17:14:32,146  - INFO - deploy-healthy                                     -- now:2            -- spec:2
+2026-09-21 17:14:32,179  - ERROR - deploy-replica-mismatch                            -- now:0            -- spec:3
+2026-09-21 17:14:32,203  - INFO - coredns                                            -- now:2            -- spec:2
+2026-09-21 17:14:36,244  - INFO - crashloop-counter                                  -- Running
+2026-09-21 17:14:36,271  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-21 17:14:36,289  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-21 17:14:36,309  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-21 17:14:36,329  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-21 17:14:36,352  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-21 17:14:36,371  - ERROR - failed-job                                         -- Failed
+2026-09-21 17:14:36,385  - INFO - multi-container-demo                               -- Running
+2026-09-21 17:14:36,398  - ERROR - pending-imagepull                                  -- Pending
+2026-09-21 17:14:36,414  - ERROR - pending-unschedulable                              -- Pending
+2026-09-21 17:14:36,437  - INFO - succeeded-job                                      -- Succeeded
+2026-09-21 17:14:36,453  - INFO - kube-flannel-ds-6jtkc                              -- Running
+2026-09-21 17:14:36,468  - INFO - kube-flannel-ds-cfvhh                              -- Running
+2026-09-21 17:14:36,482  - INFO - coredns-757cc6c8f8-5jl2b                           -- Running
+2026-09-21 17:14:36,496  - INFO - coredns-757cc6c8f8-zfw97                           -- Running
+2026-09-21 17:14:36,512  - INFO - etcd-k8s-master01.taoze.com                        -- Running
+2026-09-21 17:14:36,529  - INFO - kube-apiserver-k8s-master01.taoze.com              -- Running
+2026-09-21 17:14:36,545  - INFO - kube-controller-manager-k8s-master01.taoze.com     -- Running
+2026-09-21 17:14:36,561  - INFO - kube-proxy-v7lb8                                   -- Running
+2026-09-21 17:14:36,580  - INFO - kube-proxy-vmmwd                                   -- Running
+2026-09-21 17:14:36,597  - INFO - kube-scheduler-k8s-master01.taoze.com              -- Running
+2026-09-21 17:15:18,393  - ERROR - crashloop-counter                                  -- main             -- 1091
+2026-09-21 17:15:18,423  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-21 17:15:18,438  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-21 17:15:18,454  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-21 17:15:18,468  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-21 17:15:18,485  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-21 17:15:18,499  - INFO - failed-job                                         -- main             -- 0
+2026-09-21 17:15:18,514  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-21 17:15:18,524  - ERROR - multi-container-demo                               -- broken-sidecar   -- 874
+2026-09-21 17:15:18,540  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-21 17:15:18,558  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-21 17:15:18,577  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-21 17:15:18,591  - ERROR - kube-flannel-ds-6jtkc                              -- kube-flannel     -- 1
+2026-09-21 17:15:18,607  - INFO - kube-flannel-ds-cfvhh                              -- kube-flannel     -- 0
+2026-09-21 17:15:18,621  - INFO - coredns-757cc6c8f8-5jl2b                           -- coredns          -- 0
+2026-09-21 17:15:18,637  - INFO - coredns-757cc6c8f8-zfw97                           -- coredns          -- 0
+2026-09-21 17:15:18,664  - INFO - etcd-k8s-master01.taoze.com                        -- etcd             -- 0
+2026-09-21 17:15:18,685  - INFO - kube-apiserver-k8s-master01.taoze.com              -- kube-apiserver   -- 0
+2026-09-21 17:15:18,707  - ERROR - kube-controller-manager-k8s-master01.taoze.com     -- kube-controller-manager  -- 2
+2026-09-21 17:15:18,725  - INFO - kube-proxy-v7lb8                                   -- kube-proxy       -- 0
+2026-09-21 17:15:18,741  - ERROR - kube-proxy-vmmwd                                   -- kube-proxy       -- 1
+2026-09-21 17:15:18,761  - ERROR - kube-scheduler-k8s-master01.taoze.com              -- kube-scheduler   -- 2
+2026-09-21 17:15:35,001  - ERROR - crashloop-counter                                  -- main             -- 1091
+2026-09-21 17:15:35,026  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-21 17:15:35,052  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-21 17:15:35,070  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-21 17:15:35,095  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-21 17:15:35,115  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-21 17:15:35,134  - INFO - failed-job                                         -- main             -- 0
+2026-09-21 17:15:35,148  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-21 17:15:35,162  - ERROR - multi-container-demo                               -- broken-sidecar   -- 874
+2026-09-21 17:15:35,175  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-21 17:15:35,189  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-21 17:15:35,205  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-21 17:15:35,222  - ERROR - kube-flannel-ds-6jtkc                              -- kube-flannel     -- 1
+2026-09-21 17:15:35,235  - INFO - kube-flannel-ds-cfvhh                              -- kube-flannel     -- 0
+2026-09-21 17:15:35,253  - INFO - coredns-757cc6c8f8-5jl2b                           -- coredns          -- 0
+2026-09-21 17:15:35,275  - INFO - coredns-757cc6c8f8-zfw97                           -- coredns          -- 0
+2026-09-21 17:15:35,296  - INFO - etcd-k8s-master01.taoze.com                        -- etcd             -- 0
+2026-09-21 17:15:35,315  - INFO - kube-apiserver-k8s-master01.taoze.com              -- kube-apiserver   -- 0
+2026-09-21 17:15:35,330  - ERROR - kube-controller-manager-k8s-master01.taoze.com     -- kube-controller-manager  -- 2
+2026-09-21 17:15:35,346  - INFO - kube-proxy-v7lb8                                   -- kube-proxy       -- 0
+2026-09-21 17:15:35,363  - ERROR - kube-proxy-vmmwd                                   -- kube-proxy       -- 1
+2026-09-21 17:15:35,378  - ERROR - kube-scheduler-k8s-master01.taoze.com              -- kube-scheduler   -- 2
+2026-09-21 17:15:39,474  - ERROR - crashloop-counter                                  -- main             -- 1091
+2026-09-21 17:15:39,508  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-21 17:15:39,527  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-21 17:15:39,546  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-21 17:15:39,563  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-21 17:15:39,577  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-21 17:15:39,598  - INFO - failed-job                                         -- main             -- 0
+2026-09-21 17:15:39,616  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-21 17:15:39,635  - ERROR - multi-container-demo                               -- broken-sidecar   -- 874
+2026-09-21 17:15:39,649  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-21 17:15:39,665  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-21 17:15:39,683  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-21 17:15:39,703  - ERROR - kube-flannel-ds-6jtkc                              -- kube-flannel     -- 1
+2026-09-21 17:15:39,723  - INFO - kube-flannel-ds-cfvhh                              -- kube-flannel     -- 0
+2026-09-21 17:15:39,735  - INFO - coredns-757cc6c8f8-5jl2b                           -- coredns          -- 0
+2026-09-21 17:15:39,750  - INFO - coredns-757cc6c8f8-zfw97                           -- coredns          -- 0
+2026-09-21 17:15:39,762  - INFO - etcd-k8s-master01.taoze.com                        -- etcd             -- 0
+2026-09-21 17:15:39,773  - INFO - kube-apiserver-k8s-master01.taoze.com              -- kube-apiserver   -- 0
+2026-09-21 17:15:39,787  - ERROR - kube-controller-manager-k8s-master01.taoze.com     -- kube-controller-manager  -- 2
+2026-09-21 17:15:39,802  - INFO - kube-proxy-v7lb8                                   -- kube-proxy       -- 0
+2026-09-21 17:15:39,821  - ERROR - kube-proxy-vmmwd                                   -- kube-proxy       -- 1
+2026-09-21 17:15:39,835  - ERROR - kube-scheduler-k8s-master01.taoze.com              -- kube-scheduler   -- 2
+2026-09-21 17:15:53,737  - ERROR - crashloop-counter                                  -- main             -- 1091
+2026-09-21 17:15:53,756  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-21 17:15:53,769  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-21 17:15:53,784  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-21 17:15:53,798  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-21 17:15:53,813  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-21 17:15:53,826  - INFO - failed-job                                         -- main             -- 0
+2026-09-21 17:15:53,841  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-21 17:15:53,854  - ERROR - multi-container-demo                               -- broken-sidecar   -- 874
+2026-09-21 17:15:53,867  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-21 17:15:53,885  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-21 17:15:53,901  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-21 17:15:53,918  - ERROR - kube-flannel-ds-6jtkc                              -- kube-flannel     -- 1
+2026-09-21 17:15:53,934  - INFO - kube-flannel-ds-cfvhh                              -- kube-flannel     -- 0
+2026-09-21 17:15:53,951  - INFO - coredns-757cc6c8f8-5jl2b                           -- coredns          -- 0
+2026-09-21 17:15:53,966  - INFO - coredns-757cc6c8f8-zfw97                           -- coredns          -- 0
+2026-09-21 17:15:53,979  - INFO - etcd-k8s-master01.taoze.com                        -- etcd             -- 0
+2026-09-21 17:15:53,992  - INFO - kube-apiserver-k8s-master01.taoze.com              -- kube-apiserver   -- 0
+2026-09-21 17:15:54,007  - ERROR - kube-controller-manager-k8s-master01.taoze.com     -- kube-controller-manager  -- 2
+2026-09-21 17:15:54,024  - INFO - kube-proxy-v7lb8                                   -- kube-proxy       -- 0
+2026-09-21 17:15:54,039  - ERROR - kube-proxy-vmmwd                                   -- kube-proxy       -- 1
+2026-09-21 17:15:54,054  - ERROR - kube-scheduler-k8s-master01.taoze.com              -- kube-scheduler   -- 2
+2026-09-21 17:29:05,160  - INFO - crashloop-counter                                  -- Running
+2026-09-21 17:29:05,170  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-21 17:29:05,179  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-21 17:29:05,190  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-21 17:29:05,200  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-21 17:29:05,210  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-21 17:29:05,219  - ERROR - failed-job                                         -- Failed
+2026-09-21 17:29:05,228  - INFO - multi-container-demo                               -- Running
+2026-09-21 17:29:05,239  - ERROR - pending-imagepull                                  -- Pending
+2026-09-21 17:29:05,248  - ERROR - pending-unschedulable                              -- Pending
+2026-09-21 17:29:05,257  - INFO - succeeded-job                                      -- Succeeded
+2026-09-21 17:29:05,265  - INFO - kube-flannel-ds-6jtkc                              -- Running
+2026-09-21 17:29:05,274  - INFO - kube-flannel-ds-cfvhh                              -- Running
+2026-09-21 17:29:05,283  - INFO - coredns-757cc6c8f8-5jl2b                           -- Running
+2026-09-21 17:29:05,293  - INFO - coredns-757cc6c8f8-zfw97                           -- Running
+2026-09-21 17:29:05,301  - INFO - etcd-k8s-master01.taoze.com                        -- Running
+2026-09-21 17:29:05,310  - INFO - kube-apiserver-k8s-master01.taoze.com              -- Running
+2026-09-21 17:29:05,319  - INFO - kube-controller-manager-k8s-master01.taoze.com     -- Running
+2026-09-21 17:29:05,328  - INFO - kube-proxy-v7lb8                                   -- Running
+2026-09-21 17:29:05,336  - INFO - kube-proxy-vmmwd                                   -- Running
+2026-09-21 17:29:05,344  - INFO - kube-scheduler-k8s-master01.taoze.com              -- Running
+2026-09-21 17:32:07,388  - ERROR - crashloop-counter                                  -- main             -- 1094
+2026-09-21 17:32:07,405  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-21 17:32:07,424  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-21 17:32:07,445  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-21 17:32:07,461  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-21 17:32:07,476  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-21 17:32:07,491  - INFO - failed-job                                         -- main             -- 0
+2026-09-21 17:32:07,509  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-21 17:32:07,523  - ERROR - multi-container-demo                               -- broken-sidecar   -- 877
+2026-09-21 17:32:07,538  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-21 17:32:07,555  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-21 17:32:07,571  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-21 17:32:07,586  - ERROR - kube-flannel-ds-6jtkc                              -- kube-flannel     -- 1
+2026-09-21 17:32:07,600  - INFO - kube-flannel-ds-cfvhh                              -- kube-flannel     -- 0
+2026-09-21 17:32:07,611  - INFO - coredns-757cc6c8f8-5jl2b                           -- coredns          -- 0
+2026-09-21 17:32:07,627  - INFO - coredns-757cc6c8f8-zfw97                           -- coredns          -- 0
+2026-09-21 17:32:07,644  - INFO - etcd-k8s-master01.taoze.com                        -- etcd             -- 0
+2026-09-21 17:32:07,660  - INFO - kube-apiserver-k8s-master01.taoze.com              -- kube-apiserver   -- 0
+2026-09-21 17:32:07,676  - ERROR - kube-controller-manager-k8s-master01.taoze.com     -- kube-controller-manager  -- 2
+2026-09-21 17:32:07,695  - INFO - kube-proxy-v7lb8                                   -- kube-proxy       -- 0
+2026-09-21 17:32:07,712  - ERROR - kube-proxy-vmmwd                                   -- kube-proxy       -- 1
+2026-09-21 17:32:07,728  - ERROR - kube-scheduler-k8s-master01.taoze.com              -- kube-scheduler   -- 2
+2026-09-21 17:32:22,970  - INFO - crashloop-counter                                  -- Running
+2026-09-21 17:32:22,995  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-21 17:32:23,015  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-21 17:32:23,031  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-21 17:32:23,048  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-21 17:32:23,069  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-21 17:32:23,088  - ERROR - failed-job                                         -- Failed
+2026-09-21 17:32:23,107  - INFO - multi-container-demo                               -- Running
+2026-09-21 17:32:23,128  - ERROR - pending-imagepull                                  -- Pending
+2026-09-21 17:32:23,145  - ERROR - pending-unschedulable                              -- Pending
+2026-09-21 17:32:23,163  - INFO - succeeded-job                                      -- Succeeded
+2026-09-21 17:32:23,180  - INFO - kube-flannel-ds-6jtkc                              -- Running
+2026-09-21 17:32:23,198  - INFO - kube-flannel-ds-cfvhh                              -- Running
+2026-09-21 17:32:23,213  - INFO - coredns-757cc6c8f8-5jl2b                           -- Running
+2026-09-21 17:32:23,234  - INFO - coredns-757cc6c8f8-zfw97                           -- Running
+2026-09-21 17:32:23,251  - INFO - etcd-k8s-master01.taoze.com                        -- Running
+2026-09-21 17:32:23,267  - INFO - kube-apiserver-k8s-master01.taoze.com              -- Running
+2026-09-21 17:32:23,282  - INFO - kube-controller-manager-k8s-master01.taoze.com     -- Running
+2026-09-21 17:32:23,301  - INFO - kube-proxy-v7lb8                                   -- Running
+2026-09-21 17:32:23,318  - INFO - kube-proxy-vmmwd                                   -- Running
+2026-09-21 17:32:23,336  - INFO - kube-scheduler-k8s-master01.taoze.com              -- Running
+2026-09-21 17:41:02,731  - INFO - deploy-healthy                                     -- now:2            -- spec:2
+2026-09-21 17:41:02,752  - ERROR - deploy-replica-mismatch                            -- now:0            -- spec:3
+2026-09-21 17:41:02,775  - INFO - coredns                                            -- now:2            -- spec:2

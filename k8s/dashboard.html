@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K8s 巡检台</title>
+<style>
+  :root {
+    --bg: #0b1220; --panel: #111a2c; --line: #1e293b;
+    --text: #e2e8f0; --dim: #64748b; --ok: #22c55e; --err: #ef4444; --accent: #38bdf8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font: 14px/1.6 "Segoe UI", "Microsoft YaHei", sans-serif; }
+
+  header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
+           padding: 14px 24px; border-bottom: 1px solid var(--line); background: var(--panel); }
+  .brand { font-size: 18px; font-weight: 600; }
+  .brand .sub { font-size: 12px; color: var(--dim); margin-left: 8px; font-weight: 400; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+  input[type=password] { background: var(--bg); border: 1px solid var(--line); color: var(--text);
+    padding: 7px 10px; border-radius: 6px; width: 170px; font-family: Consolas, monospace; }
+  button { background: var(--accent); color: #04121f; border: 0; padding: 8px 14px; border-radius: 6px;
+    cursor: pointer; font-weight: 600; font-size: 13px; }
+  button:hover { filter: brightness(1.1); }
+  button.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); font-weight: 400; }
+  .auto { color: var(--dim); font-size: 13px; display: flex; gap: 4px; align-items: center; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px; padding: 18px 24px 4px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .card .t { color: var(--dim); font-size: 12px; }
+  .card .n { font-size: 20px; font-weight: 600; margin: 2px 0 8px; }
+  .card .stat { display: flex; gap: 14px; font-size: 13px; }
+  .card .stat b.ok { color: var(--ok); } .card .stat b.err { color: var(--err); }
+  .card .time { color: var(--dim); font-size: 11px; margin-top: 6px; font-family: Consolas, monospace; }
+
+  main { padding: 14px 24px; }
+  .toolbar { display: flex; justify-content: space-between; align-items: center; margin: 8px 0 10px; }
+  .toolbar .title { font-weight: 600; }
+  select { background: var(--panel); color: var(--text); border: 1px solid var(--line);
+    border-radius: 6px; padding: 6px 10px; }
+
+  section.tbl { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    margin-bottom: 16px; overflow: hidden; }
+  section.tbl h3 { padding: 10px 16px; border-bottom: 1px solid var(--line); font-size: 14px;
+    background: rgba(56,189,248,.06); }
+  section.tbl h3 span { color: var(--dim); font-weight: 400; font-size: 12px; margin-left: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; color: var(--dim); font-size: 11px; text-transform: uppercase;
+    padding: 8px 16px; border-bottom: 1px solid var(--line); }
+  td { padding: 8px 16px; border-bottom: 1px solid rgba(30,41,59,.5); font-family: Consolas, monospace; }
+  tr:last-child td { border-bottom: 0; }
+  tr:hover td { background: rgba(56,189,248,.04); }
+  td.detail { font-family: inherit; color: var(--dim); }
+  td.time { color: var(--dim); font-size: 11px; white-space: nowrap; }
+  .badge { display: inline-block; padding: 1px 10px; border-radius: 99px; font-size: 11px; font-weight: 700; }
+  .badge.OK { background: rgba(34,197,94,.15); color: var(--ok); }
+  .badge.ERROR { background: rgba(239,68,68,.15); color: var(--err); }
+  tr.is-ERROR td:first-child { box-shadow: inset 3px 0 0 var(--err); }
+
+  .empty { color: var(--dim); text-align: center; padding: 40px 0; }
+  footer { text-align: center; color: var(--dim); font-size: 12px; padding: 10px 0 24px; }
+
+  #banner { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 9;
+    padding: 10px 22px; border-radius: 8px; font-weight: 600; display: none; }
+  #banner.err { background: var(--err); color: #fff; display: block; }
+  #banner.warn { background: #f59e0b; color: #1a1206; display: block; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">&#9633; K8s 巡检台 <span class="sub">namespace: k8s-check-test</span></div>
+  <div class="controls">
+    <input id="token" type="password" placeholder="TOKEN_KEY" onkeydown="if(event.key==='Enter')loadRecent()">
+    <button onclick="triggerCheck('pods_status')">巡检 Pod 状态</button>
+    <button onclick="triggerCheck('containers_status')">巡检 容器重启</button>
+    <button onclick="triggerCheck('replica_deployment_status')">巡检 副本数</button>
+    <button class="ghost" onclick="loadRecent()">刷新</button>
+    <label class="auto"><input type="checkbox" id="autoRef" onchange="toggleAuto()"> 自动</label>
+  </div>
+</header>
+
+<section class="cards" id="cards"></section>
+
+<main>
+  <div class="toolbar">
+    <div class="title">最新一轮巡检结果</div>
+    <select id="statusFilter" onchange="render()">
+      <option value="ALL">全部</option>
+      <option value="OK">仅 OK</option>
+      <option value="ERROR">仅 ERROR</option>
+    </select>
+  </div>
+  <div id="tables"><div class="empty">该时间窗口内暂无数据 —— 填好 TOKEN 后点上方按钮触发一次巡检</div></div>
+</main>
+
+<footer>数据源：巡检服务 SQLite（/query/time 最近 60 分钟） · 触发巡检后自动刷新</footer>
+<div id="banner"></div>
+
+<script>
+// POST 响应是小写键、/query 响应是 DB 大写键 —— g() 两种都认
+const g = (r, k) => r[k] ?? r[k.toUpperCase()];
+const TYPE_LABEL = { 'pods_status': 'Pod 状态', 'containers_restart': '容器重启', 'replica_deployment': '副本数' };
+const TYPE_ORDER = ['pods_status', 'containers_restart', 'replica_deployment'];
+let ROWS = [];
+let timer = null;
+
+const token = () => sessionStorage.getItem('tk') || '';
+const saveToken = () => sessionStorage.setItem('tk', document.getElementById('token').value);
+function banner(msg, cls) {
+  const b = document.getElementById('banner');
+  b.textContent = msg; b.className = cls;
+  setTimeout(() => b.className = '', 3000);
+}
+
+async function api(path, method = 'GET') {
+  const res = await fetch(location.origin + path, { method, headers: { 'token-key': token() } });
+  if (res.status === 401) { banner('Token 无效或未填（401）', 'err'); throw new Error('401'); }
+  if (!res.ok) { banner('HTTP ' + res.status, 'err'); throw new Error(res.status); }
+  return res.json();
+}
+
+function fmt(d) {
+  const p = n => String(n).padStart(2, '0');
+  return d.getUTCFullYear() + '-' + p(d.getUTCMonth() + 1) + '-' + p(d.getUTCDate()) +
+         ' ' + p(d.getUTCHours()) + ':' + p(d.getUTCMinutes()) + ':' + p(d.getUTCSeconds());
+}
+
+// 存储一律 UTC，展示换算本地（边缘换算，只在这里做）
+function showTime(s) {
+  if (!s) return '';
+  const d = new Date(String(s).replace(' ', 'T') + 'Z');
+  if (isNaN(d)) return s;
+  const p = n => String(n).padStart(2, '0');
+  return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+         ' ' + p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+}
+
+async function triggerCheck(check) {
+  saveToken();
+  try { await api('/run/' + check, 'POST'); await loadRecent(); }
+  catch (e) { /* banner 已由 api() 打过 */ }
+}
+
+async function loadRecent() {
+  saveToken();
+  if (!token()) { banner('先填 TOKEN_KEY', 'warn'); return; }
+  const end = new Date(), start = new Date(Date.now() - 60 * 60 * 1000);
+  try {
+    ROWS = await api('/query/time?start_time=' + encodeURIComponent(fmt(start)) +
+                     '&end_time=' + encodeURIComponent(fmt(end)));
+    render();
+  } catch (e) { /* banner 已打 */ }
+}
+
+// 每个 check_type 自己一组 group_id —— 取该类型最大 group_id 的行 = 该类型最新一轮
+function latestRows(type) {
+  const rows = ROWS.filter(r => g(r, 'check_type') === type);
+  if (!rows.length) return [];
+  const latest = rows.reduce((m, r) => g(r, 'group_id') > m ? g(r, 'group_id') : m, '');
+  return rows.filter(r => g(r, 'group_id') === latest);
+}
+
+function render() {
+  const filter = document.getElementById('statusFilter').value;
+  const cards = [], tables = [];
+
+  for (const type of TYPE_ORDER) {
+    const rows = latestRows(type);
+    if (!rows.length) continue;
+    const ok = rows.filter(r => g(r, 'summarize') === 'OK').length;
+    const err = rows.length - ok;
+
+    cards.push('<div class="card"><div class="t">' + TYPE_LABEL[type] + ' · 本轮</div>' +
+      '<div class="n">' + rows.length + ' 行</div>' +
+      '<div class="stat"><span>OK <b class="ok">' + ok + '</b></span>' +
+      '<span>ERROR <b class="err">' + err + '</b></span></div>' +
+      '<div class="time">' + showTime(g(rows[0], 'create_time')) + '</div></div>');
+
+    const shown = rows.filter(r => filter === 'ALL' || g(r, 'summarize') === filter);
+    const body = shown.map(r =>
+      '<tr class="is-' + g(r, 'summarize') + '">' +
+      '<td>' + g(r, 'name') + '</td>' +
+      '<td>' + (g(r, 'container_name') === 'N/A' ? '—' : g(r, 'container_name')) + '</td>' +
+      '<td>' + g(r, 'spec') + '</td>' +
+      '<td>' + g(r, 'status') + '</td>' +
+      '<td><span class="badge ' + g(r, 'summarize') + '">' + g(r, 'summarize') + '</span></td>' +
+      '<td class="detail">' + g(r, 'detail') + '</td>' +
+      '<td class="time">' + showTime(g(r, 'create_time')) + '</td></tr>').join('');
+
+    tables.push('<section class="tbl"><h3>' + TYPE_LABEL[type] +
+      '<span>最新一轮 ' + rows.length + ' 行，展示 ' + shown.length + '</span></h3>' +
+      '<table><thead><tr><th>资源</th><th>容器</th><th>期望</th><th>实测</th><th>状态</th><th>说明</th><th>时间</th></tr></thead>' +
+      '<tbody>' + body + '</tbody></table></section>');
+  }
+
+  document.getElementById('cards').innerHTML = cards.join('');
+  const t = document.getElementById('tables');
+  t.innerHTML = tables.join('') ||
+    '<div class="empty">该时间窗口内暂无数据 —— 填好 TOKEN 后点上方按钮触发一次巡检</div>';
+}
+
+function toggleAuto() {
+  clearInterval(timer);
+  if (document.getElementById('autoRef').checked) timer = setInterval(loadRecent, 10000);
+}
+
+document.getElementById('token').value = token();
+loadRecent();
+</script>
+</body>
+</html>

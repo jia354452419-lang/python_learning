@@ -1,0 +1,46 @@
+2026-09-29 10:46:22,635  - INFO - crashloop-counter                                  -- Running
+2026-09-29 10:46:22,648  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- Running
+2026-09-29 10:46:22,657  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- Running
+2026-09-29 10:46:22,665  - ERROR - deploy-replica-mismatch-68954bf465-bbw5m           -- Pending
+2026-09-29 10:46:22,673  - ERROR - deploy-replica-mismatch-68954bf465-k97md           -- Pending
+2026-09-29 10:46:22,681  - ERROR - deploy-replica-mismatch-68954bf465-lwbzj           -- Pending
+2026-09-29 10:46:22,689  - ERROR - failed-job                                         -- Failed
+2026-09-29 10:46:22,697  - INFO - multi-container-demo                               -- Running
+2026-09-29 10:46:22,706  - ERROR - pending-imagepull                                  -- Pending
+2026-09-29 10:46:22,714  - ERROR - pending-unschedulable                              -- Pending
+2026-09-29 10:46:22,722  - INFO - succeeded-job                                      -- Succeeded
+2026-09-29 10:46:22,730  - INFO - kube-flannel-ds-6jtkc                              -- Running
+2026-09-29 10:46:22,738  - INFO - kube-flannel-ds-cfvhh                              -- Running
+2026-09-29 10:46:22,746  - INFO - coredns-757cc6c8f8-5jl2b                           -- Running
+2026-09-29 10:46:22,754  - INFO - coredns-757cc6c8f8-zfw97                           -- Running
+2026-09-29 10:46:22,763  - INFO - etcd-k8s-master01.taoze.com                        -- Running
+2026-09-29 10:46:22,772  - INFO - kube-apiserver-k8s-master01.taoze.com              -- Running
+2026-09-29 10:46:22,780  - INFO - kube-controller-manager-k8s-master01.taoze.com     -- Running
+2026-09-29 10:46:22,788  - INFO - kube-proxy-v7lb8                                   -- Running
+2026-09-29 10:46:22,796  - INFO - kube-proxy-vmmwd                                   -- Running
+2026-09-29 10:46:22,805  - INFO - kube-scheduler-k8s-master01.taoze.com              -- Running
+2026-09-29 10:46:23,867  - ERROR - crashloop-counter                                  -- main             -- 3267
+2026-09-29 10:46:23,877  - INFO - deploy-healthy-744c9bb96f-gd7f9                    -- main             -- 0
+2026-09-29 10:46:23,887  - INFO - deploy-healthy-744c9bb96f-ssmvl                    -- main             -- 0
+2026-09-29 10:46:23,896  - INFO - deploy-replica-mismatch-68954bf465-bbw5m           -- main             -- 0
+2026-09-29 10:46:23,906  - INFO - deploy-replica-mismatch-68954bf465-k97md           -- main             -- 0
+2026-09-29 10:46:23,914  - INFO - deploy-replica-mismatch-68954bf465-lwbzj           -- main             -- 0
+2026-09-29 10:46:23,922  - INFO - failed-job                                         -- main             -- 0
+2026-09-29 10:46:23,930  - INFO - multi-container-demo                               -- app              -- 0
+2026-09-29 10:46:23,937  - ERROR - multi-container-demo                               -- broken-sidecar   -- 3049
+2026-09-29 10:46:23,946  - INFO - multi-container-demo                               -- log-shipper      -- 0
+2026-09-29 10:46:23,954  - INFO - pending-imagepull                                  -- main             -- 0
+2026-09-29 10:46:23,962  - INFO - succeeded-job                                      -- main             -- 0
+2026-09-29 10:46:23,971  - ERROR - kube-flannel-ds-6jtkc                              -- kube-flannel     -- 1
+2026-09-29 10:46:23,979  - INFO - kube-flannel-ds-cfvhh                              -- kube-flannel     -- 0
+2026-09-29 10:46:23,987  - INFO - coredns-757cc6c8f8-5jl2b                           -- coredns          -- 0
+2026-09-29 10:46:23,995  - INFO - coredns-757cc6c8f8-zfw97                           -- coredns          -- 0
+2026-09-29 10:46:24,003  - INFO - etcd-k8s-master01.taoze.com                        -- etcd             -- 0
+2026-09-29 10:46:24,011  - INFO - kube-apiserver-k8s-master01.taoze.com              -- kube-apiserver   -- 0
+2026-09-29 10:46:24,019  - ERROR - kube-controller-manager-k8s-master01.taoze.com     -- kube-controller-manager  -- 10
+2026-09-29 10:46:24,028  - INFO - kube-proxy-v7lb8                                   -- kube-proxy       -- 0
+2026-09-29 10:46:24,037  - ERROR - kube-proxy-vmmwd                                   -- kube-proxy       -- 1
+2026-09-29 10:46:24,044  - ERROR - kube-scheduler-k8s-master01.taoze.com              -- kube-scheduler   -- 10
+2026-09-29 10:46:24,692  - INFO - deploy-healthy                                     -- now:2            -- spec:2
+2026-09-29 10:46:24,704  - ERROR - deploy-replica-mismatch                            -- now:0            -- spec:3
+2026-09-29 10:46:24,715  - INFO - coredns                                            -- now:2            -- spec:2

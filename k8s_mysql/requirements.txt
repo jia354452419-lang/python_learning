@@ -1,0 +1,5 @@
+fastapi==0.141.1
+uvicorn==0.52.4
+kubernetes==36.0.3
+prometheus-client==0.26.0
+pymysql==1.2.0
